@@ -97,8 +97,9 @@ hr{
     width: 25rem;
     height: 4.5rem;
     background-color: #273549;
-    position: relative;
+    position: relative; hello;
 }
+
 /* [id ^="password-el"]::after{
     content: attr(data-text);
     position: absolute;
@@ -107,7 +108,7 @@ hr{
     background-color: #1e293f;
 } */
 
-[id ^="password-el"]{
+[id ^="password-el"]::before {
     position: absolute;
     right: 0.8rem;
     bottom: 0.9rem;
