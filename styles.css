@@ -32,8 +32,6 @@ h2{
     color: #4ADF86;
 }
 
-
-
 .full-container{
     display: flex;
     flex-direction: column;
@@ -83,8 +81,6 @@ hr{
     justify-content: space-between;
 }
 
-
-
 [id ^="password-el"]{
     display: grid;
     place-content: center;
@@ -99,6 +95,7 @@ hr{
     background-color: #273549;
     position: relative;
 }
+
 /* [id ^="password-el"]::after{
     content: attr(data-text);
     position: absolute;
@@ -137,7 +134,6 @@ input[type="number"]{
     padding: 1rem;
 }
 
-
 input[type="number"]:focus{
     outline: 3px solid #00744d;
 }
@@ -145,6 +141,8 @@ input[type="number"]:focus{
 input[type="number"]:invalid{
     outline: 3px solid rgb(155, 6, 6);
 }
+
+
 
 
 @media (max-width: 600px){
@@ -176,8 +174,7 @@ input[type="number"]:invalid{
         gap: 5rem;
     }
 
-    #password-el-1, 
-    #password-el-2{
+    [id ^="password-el"]{
         width: min(26rem, 90%);
     }
 
