@@ -54,7 +54,7 @@ img{
 header > p{
     font-size: clamp(1.4rem, 4vw, 1.7rem);
     font-weight: 300;
-    margin-block: 0.4em 2.3em;
+    margin-block: 0.4em 2.8em;
 }
 
 .btn{
@@ -130,15 +130,10 @@ hr{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 39, 0.6);;
+    background-color: rgba(0, 0, 39, 0.59);;
     border-radius: 0 6px 6px 0;
     width: 5rem;
     height: 100%;
-    opacity: 0.65;
-}
-
-[id ^="password-box"] > span:hover{
-    opacity: 1;
 }
 
 span > img{
@@ -212,8 +207,8 @@ input[type="range"]::-webkit-slider-thumb{
 
     .password-holder{
         flex-direction: column;
-        padding-block: 5rem 4rem;
-        gap: 2rem;
+        padding-block: 5rem 6rem;
+        gap: 4rem;
     }
 
     form{
