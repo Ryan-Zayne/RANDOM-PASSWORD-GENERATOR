@@ -67,12 +67,12 @@ function copyToClipboard(e) {
 
     //Prints Copied! statement on tooltip
     if (targetText.textContent !== "") {
-		toolTip.textContent = "Copied!";
+		toolTip.textContent = "Copied!👌";
         toolTip.classList.add("visible");
 
         setTimeout(() => {
             toolTip.classList.remove("visible");
-        }, 1500);
+        }, 1200);
     }
 }
 

@@ -64,7 +64,7 @@ header > p{
     font-size: clamp(1.4rem, 4.1vw, 1.7rem);
     color: white;
     background-color: rgb(2, 158, 106);
-    padding: 0.7em 1em;
+    padding: 0.8em 1em;
     transform: scale(1);
     transition: transform 150ms ease;
 }
@@ -90,25 +90,27 @@ hr{
     align-items: center;
     justify-content: space-between;
     position: relative;
-    overflow-y: hidden;
 }
 
 .tooltip{
     position: absolute;
+    z-index: -1;
     display: grid;
     place-content: center;
-    bottom: 10rem;
     font-size: 1.4rem;
-    width: 8rem;
+    font-style: normal;
+    width: 9rem;
     height: 3.5rem;
-    background-color: rgba(148, 110, 131, 0.212);
+    background-color: rgba(148, 110, 131, 0.186);
+    color:gainsboro;
+    opacity: 0.8;
     border-radius: 2rem;
-    opacity: 0;
+    transition: transform 100ms ease;
 }
 
 .tooltip.visible {
-    transition: all 250ms ease;
-    opacity: 1;
+    transition: transform 250ms ease;
+    transform: translateY(-4.3rem);
 }
 
 [id ^="password-box"]{
@@ -120,7 +122,7 @@ hr{
     border-radius: 6px;
     font-size: clamp(1.4rem, 3vw, 1.8rem);
     width: min(24rem, 90%);
-    height: 4.5rem;
+    height: 4.4rem;
     background-color: rgb(23, 36, 54);
 }
 
