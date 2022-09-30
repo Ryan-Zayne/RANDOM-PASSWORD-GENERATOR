@@ -16,61 +16,55 @@ generateBtn.addEventListener("click", passwordLimit);
 passwordSlider.addEventListener("input", passwordLimit);
 copyBtn.forEach((btn) => btn.addEventListener("click", copyToClipboard));
 
-
 // Generates random characters
 function generateRandomChar() {
-    let randomChar = Math.floor(Math.random() * characters.length);
-    return characters[randomChar];
+	let randomChar = Math.floor(Math.random() * characters.length);
+	return characters[randomChar];
 }
-
 
 //Gets password limit value from user and print on screen
 function passwordLimit() {
-    const passwordSliderVal = passwordSlider.value;
-    passwordLength = passwordSliderVal;
+	const passwordSliderVal = passwordSlider.value;
+	passwordLength = passwordSliderVal;
 
-    const limitVal = document.querySelector(".limit-value")
-    limitVal.textContent = passwordSliderVal;
+	const limitVal = document.querySelector(".limit-value");
+	limitVal.textContent = passwordSliderVal;
 }
-
 
 // Generates and outputs the password in the DOM
 function generateRandomPassword() {
-    let randomPasswordOne;
-    let randomPasswordTwo;
+	let randomPasswordOne = "";
+	let randomPasswordTwo = "";
 
-    for (let i = 0; i < passwordLength; i++) {
-        randomPasswordOne += generateRandomChar();
-        randomPasswordTwo += generateRandomChar();
-    }
+	for (let i = 0; i < passwordLength; i++) {
+		randomPasswordOne += generateRandomChar();
+		randomPasswordTwo += generateRandomChar();
+	}
 
-    passwordBoxOne.textContent = randomPasswordOne;
-    passwordBoxTwo.textContent = randomPasswordTwo;
+	passwordBoxOne.textContent = randomPasswordOne;
+	passwordBoxTwo.textContent = randomPasswordTwo;
 }
-
 
 // Copy to clipboard feature
 function copyToClipboard(e) {
-    const targetBtn = e.target;
-    const targetAttr = targetBtn.getAttribute("data-content");
-    const targetText = document.querySelector(`#${targetAttr}`);
+	const targetBtn = e.target;
+	const targetAttr = targetBtn.getAttribute("data-content");
+	const targetText = document.querySelector(`#${targetAttr}`);
 
-    //Copies textcontent to clipboard
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(targetText.textContent);
+	//Copies textcontent to clipboard
+	if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+		navigator.clipboard.writeText(targetText.textContent);
+	} else {
+		Promise.reject("The Clipboard API is not available.");
+	}
 
-    } else {
-        Promise.reject('The Clipboard API is not available.');
-
-    }
-
-    //Prints Copied! statement on tooltip
-    if (targetText.textContent !== "") {
+	//Prints Copied! statement on tooltip
+	if (targetText.textContent !== "") {
 		toolTip.textContent = "Copied!👌";
-        toolTip.classList.add("visible");
+		toolTip.classList.add("visible");
 
-        setTimeout(() => {
-            toolTip.classList.remove("visible");
-        }, 1200);
-    }
+		setTimeout(() => {
+			toolTip.classList.remove("visible");
+		}, 1200);
+	}
 }
