@@ -18,7 +18,7 @@ copyBtn.forEach((btn) => btn.addEventListener("click", copyToClipboard));
 
 // Generates random characters
 function generateRandomChar() {
-	let randomChar = Math.floor(Math.random() * characters.length);
+	const randomChar = Math.floor(Math.random() * characters.length);
 	return characters[randomChar];
 }
 
@@ -30,6 +30,8 @@ function passwordLimit() {
 	const limitVal = document.querySelector(".limit-value");
 	limitVal.textContent = passwordSliderVal;
 }
+
+
 
 // Generates and outputs the password in the DOM
 function generateRandomPassword() {
@@ -68,3 +70,4 @@ function copyToClipboard(e) {
 		}, 1200);
 	}
 }
+
