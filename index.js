@@ -10,17 +10,20 @@ const passwordSlider = document.getElementById("password-range");
 const toolTip = document.querySelector(".tooltip");
 let passwordLength = 8;
 
+
 // All event listeners
 generateBtn.addEventListener("click", generateRandomPassword);
 generateBtn.addEventListener("click", passwordLimit);
 passwordSlider.addEventListener("input", passwordLimit);
 copyBtn.forEach((btn) => btn.addEventListener("click", copyToClipboard));
 
+
 // Generates random characters
 function generateRandomChar() {
 	const randomChar = Math.floor(Math.random() * characters.length);
 	return characters[randomChar];
 }
+
 
 //Gets password limit value from user and print on screen
 function passwordLimit() {
@@ -30,7 +33,6 @@ function passwordLimit() {
 	const limitVal = document.querySelector(".limit-value");
 	limitVal.textContent = passwordSliderVal;
 }
-
 
 
 // Generates and outputs the password in the DOM
@@ -46,6 +48,7 @@ function generateRandomPassword() {
 	passwordBoxOne.textContent = randomPasswordOne;
 	passwordBoxTwo.textContent = randomPasswordTwo;
 }
+
 
 // Copy to clipboard feature
 function copyToClipboard(e) {
