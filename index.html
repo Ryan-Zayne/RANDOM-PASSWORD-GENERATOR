@@ -1,60 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="assets/password-logo.png">
-    <script src="https://kit.fontawesome.com/bcecd6ca32.js" crossorigin="anonymous"></script>
-    <title>Password Generator</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="icon" type="image/x-icon" href="assets/password-logo.png">
+	<script src="https://kit.fontawesome.com/bcecd6ca32.js" crossorigin="anonymous"></script>
+	<title>Password Generator</title>
 </head>
 
 <body>
-    <div class="full-container">
-        <header>
-            <h1>Generate a</h1>
-            <h2>random password</h2>
-            <p>Never use an insecure password again.</p>
-        </header>
-    
-        <main class="main-container">
-            <button class="btn" id="generate-btn">
-                Generate passwords
-            </button>
-            <hr>
-        
-            <section class="password-holder">
-                <div id="password-box-1">
-                    <p id="password-content-1"></p>
-                    <span class="copy-btn"  data-content="password-content-1">
-                        <img src="/assets/copy-green.png" alt="">
-                    </span>
-                </div>
-                
-                <div id="password-box-2">
-                    <p id="password-content-2"></p>
-                    <span class="copy-btn" data-content="password-content-2">
-                        <img src="/assets/copy-green.png" alt="">
-                        
-                    </span>
-                </div>
+	<div class="full-container">
+		<header>
+			<h1>Generate a</h1>
+			<h2>random password</h2>
+			<p>Never use an insecure password again.</p>
+		</header>
 
-                <i class ="tooltip" data-tooltip="Click to copy"></i>
-            </section>
-        
-            <form id="form">
-                <label for="password-range">Set password length:</label>
-                <div>
-                    <input type="range" id="password-range" min="8" max="20" step="1" value="8">
-                    <p> 
-                        <strong class="limit-value">8</strong> characters
-                    </p>
-                
-                </div>
-            </form>
-        </main>
-    </div>
-    <script src="index.js"></script>
+		<main class="main-container">
+			<button class="btn" id="generate-btn">
+				Generate passwords
+			</button>
+			<hr>
+
+			<section class="password-holder">
+				<div id="password-box-1">
+					<p id="password-content-1"></p>
+					<span class="copy-btn" data-content="password-content-1">
+						<img src="/assets/copy-green.png" alt="">
+					</span>
+				</div>
+
+				<div id="password-box-2">
+					<p id="password-content-2"></p>
+					<span class="copy-btn" data-content="password-content-2">
+						<img src="/assets/copy-green.png" alt="">
+
+					</span>
+				</div>
+
+				<i class="tooltip" data-tooltip="Click to copy"></i>
+			</section>
+
+			<form id="form">
+				<label for="password-range">Set password length:</label>
+				<div>
+					<input type="range" id="password-range" min="8" max="20" step="1" value="8" autocomplete="off">
+					<p>
+						<strong class="limit-value">8</strong> characters
+					</p>
+
+				</div>
+			</form>
+		</main>
+	</div>
+	<script src="index.js"></script>
 </body>
+
 </html>
