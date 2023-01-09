@@ -27,8 +27,7 @@ function generateRandomChar() {
 
 //Gets password limit value from user and print on screen
 function passwordLimit() {
-	const passwordSliderVal = passwordSlider.value;
-	passwordLength = passwordSliderVal;
+	passwordLength = passwordSlider.value;
 
 	const limitVal = document.querySelector('.limit-value');
 	limitVal.textContent = passwordSliderVal;
