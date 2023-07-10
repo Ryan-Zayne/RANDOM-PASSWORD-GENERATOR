@@ -155,7 +155,7 @@ form > div {
 	font-size: 1.7rem;
 }
 
-:is(strong){
+:is(strong) {
 	display: inline-block;
 	width: 2.1rem;
 }

@@ -1,41 +1,30 @@
-"use strict";
-
-
 const generateBtn = document.getElementById('generate-btn');
 const passwordBoxOne = document.getElementById('password-box-1').firstElementChild;
 const passwordBoxTwo = document.getElementById('password-box-2').firstElementChild;
 const copyBtn = document.querySelectorAll('.copy-btn');
+const limitVal = document.querySelector('.limit-value');
 const passwordSlider = document.getElementById('password-range');
 const toolTip = document.querySelector('.tooltip');
 let passwordLength = 8;
 
-
-// All event listeners
-generateBtn.addEventListener('click', passwordLimit);
-generateBtn.addEventListener('click', generateRandomPassword);
-passwordSlider.addEventListener('input', passwordLimit);
-copyBtn.forEach((btn) => btn.addEventListener('click', copyToClipboard));
-
-
 // Generates random characters
-function generateRandomChar() {
+const generateRandomChar = () => {
+	// prettier-ignore
 	const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/"];
+
 	const randomChar = Math.floor(Math.random() * characters.length);
 	return characters[randomChar];
-}
-
+};
 
 //Gets password limit value from user and print on screen
-function passwordLimit() {
+const passwordLimit = () => {
 	passwordLength = passwordSlider.value;
 
-	const limitVal = document.querySelector('.limit-value');
-	limitVal.textContent = passwordSliderVal;
-}
-
+	limitVal.textContent = passwordLength;
+};
 
 // Generates and outputs the password in the DOM
-function generateRandomPassword() {
+const generateRandomPassword = () => {
 	let randomPasswordOne = '';
 	let randomPasswordTwo = '';
 
@@ -46,30 +35,32 @@ function generateRandomPassword() {
 
 	passwordBoxOne.textContent = randomPasswordOne;
 	passwordBoxTwo.textContent = randomPasswordTwo;
-}
-
+};
 
 // Copy to clipboard feature
-function copyToClipboard(e) {
-	const targetBtn = e.target;
-	const targetAttr = targetBtn.getAttribute('data-content');
+const copyToClipboard = async (event) => {
+	const targetBtn = event.target;
+	const targetAttr = targetBtn.dataset.content;
 	const targetText = document.querySelector(`#${targetAttr}`);
 
-	//Copies textcontent to clipboard
-	if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-		navigator.clipboard.writeText(targetText.textContent);
-	} else {
-		Promise.reject('The Clipboard API is not available.');
-	}
+	if (targetText.textContent === '') return;
 
-	//Prints Copied! statement on tooltip
-	if (targetText.textContent !== '') {
-		toolTip.textContent = 'Copied!👌';
+	//Copies textcontent to clipboard
+	try {
+		await navigator?.clipboard?.writeText(targetText.textContent);
+
 		toolTip.classList.add('visible');
 
-		setTimeout(() => {
+		const timeoutID = setTimeout(() => {
 			toolTip.classList.remove('visible');
+			clearTimeout(timeoutID);
 		}, 1200);
+	} catch (error) {
+		console.error(error);
 	}
-}
+};
 
+// All event listeners
+generateBtn.addEventListener('click', generateRandomPassword);
+passwordSlider.addEventListener('input', passwordLimit);
+copyBtn.forEach((btn) => btn.addEventListener('click', copyToClipboard));
