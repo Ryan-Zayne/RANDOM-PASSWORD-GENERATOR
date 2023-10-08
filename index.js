@@ -7,34 +7,47 @@ const passwordSlider = document.getElementById('password-range');
 const toolTip = document.querySelector('.tooltip');
 let passwordLength = 8;
 
-// Generates random characters
 const generateRandomChar = () => {
 	// prettier-ignore
 	const characters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "~", "`", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "-", "+", "=", "{", "[", "}", "]", ",", "|", ":", ";", "<", ">", ".", "?", "/"];
 
-	const randomChar = Math.floor(Math.random() * characters.length);
-	return characters[randomChar];
+	const randomIndex = Math.floor(Math.random() * characters.length);
+
+	const randomChar = characters[randomIndex];
+
+	return randomChar;
 };
 
-//Gets password limit value from user and print on screen
-const passwordLimit = () => {
-	passwordLength = passwordSlider.value;
+const generateRandomString = ({ stringlength = 30 } = {}) => {
+	const randomString = crypto.randomUUID().split('-').join('').slice(0, stringlength);
 
-	limitVal.textContent = passwordLength;
+	return randomString;
 };
 
 // Generates and outputs the password in the DOM
-const generateRandomPassword = () => {
+const generateRandomPasswordOne = () => {
 	let randomPasswordOne = '';
-	let randomPasswordTwo = '';
 
 	for (let i = 0; i < passwordLength; i++) {
 		randomPasswordOne += generateRandomChar();
-		randomPasswordTwo += generateRandomChar();
 	}
 
 	passwordBoxOne.textContent = randomPasswordOne;
+};
+
+const generateRandomPasswordTwo = () => {
+	const randomPasswordTwo = generateRandomString({ stringlength: passwordLength });
+
 	passwordBoxTwo.textContent = randomPasswordTwo;
+};
+
+const oldSchoolCopy = (text) => {
+	const tempTextArea = document.createElement('textarea');
+	tempTextArea.value = text;
+	document.body.appendChild(tempTextArea);
+	tempTextArea.select();
+	document.execCommand('copy');
+	document.body.removeChild(tempTextArea);
 };
 
 // Copy to clipboard feature
@@ -45,9 +58,12 @@ const copyToClipboard = async (event) => {
 
 	if (targetText.textContent === '') return;
 
-	//Copies textcontent to clipboard
 	try {
-		await navigator?.clipboard?.writeText(targetText.textContent);
+		if (!navigator?.clipboard?.writeText) {
+			throw new Error('writeText not supported');
+		}
+
+		await navigator.clipboard.writeText(targetText.textContent);
 
 		toolTip.classList.add('visible');
 
@@ -55,12 +71,21 @@ const copyToClipboard = async (event) => {
 			toolTip.classList.remove('visible');
 			clearTimeout(timeoutID);
 		}, 1200);
-	} catch (error) {
-		console.error(error);
+	} catch (e) {
+		oldSchoolCopy(targetText.textContent);
 	}
 };
 
 // All event listeners
-generateBtn.addEventListener('click', generateRandomPassword);
-passwordSlider.addEventListener('input', passwordLimit);
+passwordSlider.addEventListener('input', () => {
+	passwordLength = passwordSlider.value;
+
+	limitVal.textContent = passwordLength;
+});
+
+generateBtn.addEventListener('click', () => {
+	generateRandomPasswordOne();
+	generateRandomPasswordTwo();
+});
+
 copyBtn.forEach((btn) => btn.addEventListener('click', copyToClipboard));
